@@ -57,7 +57,7 @@ export default function ModulePage(props) {
         filter
         image={require("assets/img/profile-bg.jpg").default}
       />
-      <div className={classNames(profileClasses.main, profileClasses.mainRaised)} style={{ marginTop: '-800px'}}>
+      <div className={classNames(profileClasses.main, profileClasses.mainRaised)} style={{ marginTop: '-38%'}}>
           <div className={profileClasses.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>

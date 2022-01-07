@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -28,10 +29,12 @@ const useStyles = makeStyles(styles);
 
 export default function Navbar() {
     const classes = useStyles();
+    const history = useHistory();
+
     return (
         <div id="navbar" className={classes.navbar}>
             <Header
-                brand="Hack n Roll"
+                brand="NUS Match"
                 color="dark"
                 rightLinks={
                 <List className={classes.list}>
