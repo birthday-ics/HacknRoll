@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -17,7 +18,9 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CustomInput2 from "components/CustomInput/CustomInput2.js";
+import Navbar from "../Components/Common/Navbar.js"
 
+import { getValueByKey } from "database/utils.js";
 
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import styles2 from "assets/jss/material-kit-react/views/homePage.js";
@@ -35,29 +38,35 @@ export default function LandingPage(props) {
   const classes2 = useStyles2();
   const { ...rest } = props;
   const [search, setSearch] = useState("")
-  const [modules, SetModules] = useState(["AC4002", "AC5002", "CS2101", "CS2102", "CS3120"])
+  const [modules, setModules] = useState([])
+  const [allmodules, setAllModules] = useState([])
 
+  function searchWord() {
+      if (search === "") {
+            setModules(allmodules)
+      } else {
+            const newModules = allmodules
+            setModules(newModules.filter((module) => {
+                return module[1].includes(search)
+            }))
+      }
+  }
   useEffect(() => {
-    const valuePromise = getValueByKey("modules/AC5002")
+    const valuePromise = getValueByKey("modules")
     valuePromise.then(res => {
-      console.log("promise result: ", res);
+      const moduleArr = []
+      Object.keys(res).forEach(moduleCode => {
+        const moduleInfo = res[moduleCode]
+        moduleArr.push([moduleInfo.description, moduleInfo.moduleCode, moduleInfo.title])
+      })
+      setModules(moduleArr)
+      setAllModules(moduleArr)
     })
   }, [])
 
   return (
     <div>
-      <Header
-        color="transparent"
-        routes={dashboardRoutes}
-        brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 400,
-          color: "white",
-        }}
-        {...rest}
-      />
+      <Navbar/>
       <Parallax filter image={require("assets/img/landing-bg.jpg").default}>
         <div className={classes.container}>
           <GridContainer>
@@ -83,7 +92,7 @@ export default function LandingPage(props) {
                     },
                   }}
                 />
-                <Button justIcon round color="white" onClick={() => console.log(search)}>
+                <Button justIcon round color="white" onClick={() => searchWord()}>
                   <Search className={classes.searchIcon} />
                 </Button>
               </div>
@@ -94,7 +103,7 @@ export default function LandingPage(props) {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-            <ModuleSelectionSection currentModules={modules}/>
+             <ModuleSelectionSection currentModules={modules}/> 
         </div>
       </div>
       <Footer />

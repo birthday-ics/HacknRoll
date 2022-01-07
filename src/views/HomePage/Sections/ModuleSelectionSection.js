@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -17,17 +18,21 @@ const useStyles = makeStyles(styles);
 
 export default function ModuleSelectionSection({currentModules}) {
   const classes = useStyles();
-  console.log(typeof(currentModules))
-  
+  const history = useHistory();
+
   return (
     <div className={classes.section}>
       <div>
         <GridContainer>
-             {currentModules.map((module) => {
-              return(<GridItem xs={12} sm={12} md={4} key={module}> 
+             {currentModules && currentModules.map((module) => {
+              return(<GridItem xs={12} sm={12} md={4} key={module} 
+                onClick={() => {    
+                history.push('/modules/' + module[1])
+                }}
+            > 
                 <InfoArea
-                    title={module}
-                    description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+                    title={module[1]}
+                    description={module[2]}
                     icon="testing"
                     iconColor="info"
                     vertical

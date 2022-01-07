@@ -38,7 +38,7 @@ export default function LoginPage(props) {
     const parsedUsername = username.split('/homepage')[1]
     writeData("users/" + parsedUsername, password)
 
-    history.push('/')
+    history.push('/home-page')
   }
 
   return (
