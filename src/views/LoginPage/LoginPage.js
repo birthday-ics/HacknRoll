@@ -35,7 +35,7 @@ export default function LoginPage(props) {
   const login = () => {
     const username = document.getElementById('email').value
     const password = document.getElementById('pass').value
-    const parsedUsername = username.split('/')[1]
+    const parsedUsername = username.split('/homepage')[1]
     writeData("users/" + parsedUsername, password)
 
     history.push('/')

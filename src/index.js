@@ -20,8 +20,8 @@ ReactDOM.render(
       <Route path="/landing-page" component={LandingPage} />
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/modules/:moduleId" component={ModulePage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/" component={Components} />
+      <Route path="/components" component={Components} />
+      <Route path="/" component={LoginPage} />
     </Switch>
   </Router>,
   document.getElementById("root")
