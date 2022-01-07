@@ -34,10 +34,13 @@ import { populateModulesDb, writeData, getValueByKey } from "database/utils.js";
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
-  // Test database connection, can remove this
+  // TODO: Remove this, just for testing database connection
   useEffect(() => {
-    writeData("testWrite", { key: "key", key2: "key2" })
-    const valuePromise = getValueByKey("testWrite")
+    // writeData("posts/Ben", ['CS1231', 'CS1101S'])
+    // writeData("applications/Ben/CS1101", { name: "Ben", CAP: "5", details: "I want to get A"})
+    // populateModulesDb()
+
+    const valuePromise = getValueByKey("modules/AC5001")
     valuePromise.then(res => {
       console.log("promise result: ", res);
     })
