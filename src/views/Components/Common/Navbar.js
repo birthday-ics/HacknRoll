@@ -35,38 +35,6 @@ export default function Navbar() {
                 color="dark"
                 rightLinks={
                 <List className={classes.list}>
-                    <ListItem className={classes.listItem}>
-                        <CustomInput
-                        white
-                        inputRootCustomClasses={classes.inputRootCustomClasses}
-                        formControlProps={{
-                            className: classes.formControl,
-                        }}
-                        inputProps={{
-                            placeholder: "Search For Module",
-                            inputProps: {
-                            "aria-label": "Search",
-                            className: classes.searchInput,
-                            },
-                        }}
-                        />
-                        <Button justIcon round color="rose">
-                            <Search className={classes.searchIcon} />
-                        </Button>
-                    </ListItem>
-
-                    <ListItem className={classes.listItem}>
-                        <Button
-                        href="#pablo" // Replace the commented items with this register button for not signed in
-                        className={classes.registerNavLink}
-                        onClick={(e) => e.preventDefault()} // go to register page
-                        color="rose"
-                        round
-                        >
-                        Register
-                        </Button>
-                    </ListItem>
-
                     <ListItem className={classes.listItem}> 
                         <Button
                         justIcon // list item available if logged in
@@ -84,7 +52,7 @@ export default function Navbar() {
                         left // list item available if logged in
                         caret={false}
                         hoverColor="black"
-                        dropdownHeader="Username" //Placeholder name
+                        dropdownHeader="Username" //Placeholder name, replace with the users name
                         buttonText={
                             <img
                             src={profileImage}
@@ -97,11 +65,6 @@ export default function Navbar() {
                             classes.navLink + " " + classes.imageDropdownButton,
                             color: "transparent",
                         }}
-                        dropdownList={[
-                            "My Teams and Applications",
-                            "Settings",
-                            "Sign out",
-                        ]}
                         />
                     </ListItem>
                 </List>
