@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react components for routing our app without refresh
@@ -29,10 +29,20 @@ import SectionExamples from "./Sections/SectionExamples.js";
 import SectionDownload from "./Sections/SectionDownload.js";
 
 import styles from "assets/jss/material-kit-react/views/components.js";
+import { writeData, getValueByKey } from "database/utils.js";
 
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
+  // Test database connection, can remove this
+  useEffect(() => {
+    writeData("Key", { value: "value", value1: "value1" })
+    const valuePromise = getValueByKey("Key")
+    valuePromise.then(res => {
+      console.log("promise result: ", res);
+    })
+  }, [])
+
   const classes = useStyles();
   const { ...rest } = props;
   return (
