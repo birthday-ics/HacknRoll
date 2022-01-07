@@ -36,9 +36,8 @@ const useStyles = makeStyles(styles);
 export default function Components(props) {
   // Test database connection, can remove this
   useEffect(() => {
-    writeData("modules", { moduleCode: "GET1024", description: "Dynamics of society and change" })
-    populateModulesDb()
-    const valuePromise = getValueByKey("Key")
+    writeData("testWrite", { key: "key", key2: "key2" })
+    const valuePromise = getValueByKey("testWrite")
     valuePromise.then(res => {
       console.log("promise result: ", res);
     })
