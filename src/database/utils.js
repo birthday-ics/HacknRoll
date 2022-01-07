@@ -1,5 +1,6 @@
 import { ref, set, get, child } from "firebase/database";
 import { database } from "./database";
+import { MODULE_INFO } from "../nus_mods_data";
 
 // Returns promise of snapshot
 export const getValueByKey = (key) => {
@@ -28,4 +29,17 @@ export const observeKey = (key, action) => {
 // example key: can be 'posts/' + postId + '/numLikes' 
 export const writeData = (key, value) => {
 	set(ref(database, key), value);
+}
+
+// Populate db with NUS module information (only half used, full data set very big), with data from NUS mods API
+export const populateModulesDb = () => {
+	var allModulesInfo = {}
+	MODULE_INFO.forEach(module => {
+		allModulesInfo[module["moduleCode"]] = {
+			moduleCode: module["moduleCode"],
+			title: module["title"],
+			description: module["description"]
+		}
+	})
+	writeData("modules", allModulesInfo)
 }

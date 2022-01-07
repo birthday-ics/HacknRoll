@@ -29,14 +29,15 @@ import SectionExamples from "./Sections/SectionExamples.js";
 import SectionDownload from "./Sections/SectionDownload.js";
 
 import styles from "assets/jss/material-kit-react/views/components.js";
-import { writeData, getValueByKey } from "database/utils.js";
+import { populateModulesDb, writeData, getValueByKey } from "database/utils.js";
 
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
   // Test database connection, can remove this
   useEffect(() => {
-    writeData("Key", { value: "value", value1: "value1" })
+    writeData("modules", { moduleCode: "GET1024", description: "Dynamics of society and change" })
+    populateModulesDb()
     const valuePromise = getValueByKey("Key")
     valuePromise.then(res => {
       console.log("promise result: ", res);
