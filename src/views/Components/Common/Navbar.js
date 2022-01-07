@@ -35,17 +35,6 @@ export default function Navbar() {
                 color="dark"
                 rightLinks={
                 <List className={classes.list}>
-                    <ListItem className={classes.listItem}>
-                        <Button
-                        href="#pablo" // Replace the commented items with this register button for not signed in
-                        className={classes.registerNavLink}
-                        onClick={(e) => e.preventDefault()} // go to Log In page => can register from there
-                        color="rose"
-                        round
-                        >
-                        Log In
-                        </Button>
-                    </ListItem>
                     <ListItem className={classes.listItem}> 
                         <Button
                         justIcon // list item available if logged in
