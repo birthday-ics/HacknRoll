@@ -36,8 +36,8 @@ const useStyles = makeStyles(styles);
 export default function Components(props) {
   // Test database connection, can remove this
   useEffect(() => {
-    writeData("testWrite", { key: "key", key2: "key2" })
-    const valuePromise = getValueByKey("testWrite")
+    writeData("Applications", { AC5001: {Royce: {PostID: "Ben", Cap: 4.25, Strengths: "I love Ben", Weaknesses: "I hate Isaac", Grade_Target: "B"}, Hans: {PostID: "Ben", Cap: 4.25, Strengths: "I love Ben", Weaknesses: "I hate Isaac", Grade_Target: "A"}}})
+    const valuePromise = getValueByKey("modules/AC5002")
     valuePromise.then(res => {
       console.log("promise result: ", res);
     })
